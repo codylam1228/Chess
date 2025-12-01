@@ -98,6 +98,32 @@ export class XiangqiGame {
     return true;
   }
 
+  // Serialization
+  exportState() {
+    return JSON.stringify({
+      board: this.board,
+      turn: this.turn,
+      history: this.history,
+      winner: this.winner
+    });
+  }
+
+  importState(json) {
+    try {
+      const data = JSON.parse(json);
+      if (!data.board || !data.turn) throw new Error('Invalid save file');
+      
+      this.board = data.board;
+      this.turn = data.turn;
+      this.history = data.history || [];
+      this.winner = data.winner || null;
+      return true;
+    } catch (e) {
+      console.error(e);
+      return false;
+    }
+  }
+
   isValidMove(r1, c1, r2, c2) {
     const p = this.getPiece(r1, c1);
     if (!p || p.color !== this.turn) return false;
@@ -212,4 +238,3 @@ export class XiangqiGame {
     return count;
   }
 }
-

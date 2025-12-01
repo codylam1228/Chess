@@ -15,15 +15,19 @@ export class XiangqiUI {
           <span id="turn-indicator">Turn: Red</span>
           <div class="controls">
             <button id="undo-btn" class="btn">Reverse</button>
+            <button id="save-btn" class="btn">Save</button>
+            <button id="load-btn" class="btn">Load</button>
             <button id="reset-btn" class="btn">Reset</button>
           </div>
         </div>
         <div class="xiangqi-board" id="xiangqi-board"></div>
+        <input type="file" id="file-input" accept=".json" style="display: none;">
       </div>
     `;
 
     this.boardEl = this.container.querySelector('#xiangqi-board');
     this.turnEl = this.container.querySelector('#turn-indicator');
+    this.fileInput = this.container.querySelector('#file-input');
     
     this.container.querySelector('#undo-btn').addEventListener('click', () => {
       if (this.game.undo()) {
@@ -32,6 +36,11 @@ export class XiangqiUI {
       }
     });
 
+    this.container.querySelector('#save-btn').addEventListener('click', () => this.handleSave());
+    this.container.querySelector('#load-btn').addEventListener('click', () => this.fileInput.click());
+    
+    this.fileInput.addEventListener('change', (e) => this.handleLoad(e));
+
     this.container.querySelector('#reset-btn').addEventListener('click', () => {
       this.game = new XiangqiGame();
       this.selectedSquare = null;
@@ -39,6 +48,37 @@ export class XiangqiUI {
     });
 
     this.render();
+  }
+
+  handleSave() {
+    const json = this.game.exportState();
+    const blob = new Blob([json], {type: 'application/json'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    const timestamp = new Date().toISOString().replace(/[:.]/g, '-').slice(0, 19);
+    a.download = `Xiangqi_${timestamp}.json`;
+    a.click();
+    URL.revokeObjectURL(url);
+  }
+
+  handleLoad(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      const content = event.target.result;
+      if (this.game.importState(content)) {
+        this.selectedSquare = null;
+        this.render();
+        alert('Game Loaded Successfully');
+      } else {
+        alert('Failed to load game file');
+      }
+    };
+    reader.readAsText(file);
+    e.target.value = ''; // Reset input
   }
 
   getPieceChar(piece) {
@@ -113,4 +153,3 @@ export class XiangqiUI {
     }
   }
 }
-

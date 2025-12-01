@@ -1,4 +1,4 @@
-const CACHE_NAME = 'game-portal-v2';
+const CACHE_NAME = 'game-portal-v3';
 const ASSETS = [
   './',
   './index.html',

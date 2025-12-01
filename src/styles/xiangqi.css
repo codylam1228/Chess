@@ -57,6 +57,18 @@
 /* This requires careful Nth-child logic or just accept full grid */
 /* Minimalist: Just full grid is fine, maybe with River gap */
 
+/* River: Break vertical lines between Row 4 and Row 5 */
+/* Row 4: Line only goes down to center (Top half only) */
+.xq-cell[data-row="4"]:not([data-col="0"]):not([data-col="8"])::after {
+  height: 50%;
+}
+
+/* Row 5: Line only starts from center (Bottom half only) */
+.xq-cell[data-row="5"]:not([data-col="0"]):not([data-col="8"])::after {
+  top: 50%;
+  height: 50%;
+}
+
 .xq-piece {
   width: 80%;
   height: 80%;
@@ -86,4 +98,3 @@
   background-color: #ffffdd;
   transform: scale(1.1);
 }
-

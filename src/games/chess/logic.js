@@ -20,6 +20,7 @@ export class ChessGame {
     this.winner = null;
   }
 
+  // ... existing methods ...
   createBoard() {
     const board = new Array(8).fill(null).map(() => new Array(8).fill(null));
     const setupRow = (row, color, pieces) => {
@@ -82,18 +83,38 @@ export class ChessGame {
     const lastMove = this.history.pop();
     const { from, to, piece, captured, promoted } = lastMove;
 
-    // Revert piece position
-    // If promoted, revert type is handled because we use the 'piece' from history? 
-    // Wait, I saved { ...piece } BEFORE promotion check (Wait, no, I saved it before mutation in memory, but `piece` object is same ref if I didn't copy properly? I used spread, so it's a shallow copy. It should be fine.)
-    // Actually, if I promoted, `piece.type` changed on the object in `this.board`.
-    // But `lastMove.piece` is the snapshot BEFORE move.
-    
     this.board[from.r][from.c] = lastMove.piece;
     this.board[to.r][to.c] = captured;
 
     // Revert Turn
     this.turn = this.turn === Piece.WHITE ? Piece.BLACK : Piece.WHITE;
     return true;
+  }
+
+  // Serialization
+  exportState() {
+    return JSON.stringify({
+      board: this.board,
+      turn: this.turn,
+      history: this.history,
+      winner: this.winner
+    });
+  }
+
+  importState(json) {
+    try {
+      const data = JSON.parse(json);
+      if (!data.board || !data.turn) throw new Error('Invalid save file');
+      
+      this.board = data.board;
+      this.turn = data.turn;
+      this.history = data.history || [];
+      this.winner = data.winner || null;
+      return true;
+    } catch (e) {
+      console.error(e);
+      return false;
+    }
   }
 
   isValidMove(fromRow, fromCol, toRow, toCol) {
