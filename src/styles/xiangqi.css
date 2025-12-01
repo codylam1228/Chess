@@ -1,0 +1,89 @@
+/* Xiangqi Styles */
+.xiangqi-game {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.xiangqi-board {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  grid-template-rows: repeat(10, 1fr);
+  width: 100%;
+  max-width: 450px; /* Slightly wider aspect */
+  aspect-ratio: 9 / 10;
+  border: 2px solid var(--border-color);
+  background-color: #f0d9b5; /* Classic board color */
+  position: relative;
+  padding: 5px;
+}
+
+/* Grid Lines - A simplified approach using borders on cells is tricky due to River */
+/* Using pseudo-elements or background image is better, but CSS Grid with borders works for minimalist */
+
+.xq-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  cursor: pointer;
+}
+
+/* Draw Grid Lines */
+.xq-cell::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: #8b5a2b;
+  z-index: 0;
+}
+
+.xq-cell::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  height: 100%;
+  width: 1px;
+  background: #8b5a2b;
+  z-index: 0;
+}
+
+/* Hide borders at edges to make it look like intersection */
+/* This requires careful Nth-child logic or just accept full grid */
+/* Minimalist: Just full grid is fine, maybe with River gap */
+
+.xq-piece {
+  width: 80%;
+  height: 80%;
+  border-radius: 50%;
+  background: #fff;
+  border: 2px solid currentColor;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  z-index: 1;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  user-select: none;
+}
+
+.xq-piece.red {
+  color: #c0392b;
+  border-color: #c0392b;
+}
+
+.xq-piece.black {
+  color: #2c3e50;
+  border-color: #2c3e50;
+}
+
+.xq-cell.selected .xq-piece {
+  background-color: #ffffdd;
+  transform: scale(1.1);
+}
+

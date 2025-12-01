@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Minimalist offline board games: Chess and Lines of Action.">
+  <meta name="theme-color" content="#222222">
+  <title>Game Portal</title>
+  <link rel="manifest" href="./manifest.json">
+  <link rel="stylesheet" href="./src/styles/main.css">
+</head>
+<body>
+  <div id="app">
+    <header class="main-header">
+      <h1>Game Portal</h1>
+    </header>
+    <main id="game-container">
+      <!-- Game content will be injected here -->
+      <div class="game-selector">
+        <button class="game-card" data-game="chess">
+          <h2>Chess</h2>
+          <p>Classic strategy game</p>
+        </button>
+        <button class="game-card" data-game="loa">
+          <h2>Lines of Action</h2>
+          <p>Connect your pieces</p>
+        </button>
+        <button class="game-card" data-game="xiangqi">
+          <h2>Chinese Chess</h2>
+          <p>Xiangqi Strategy</p>
+        </button>
+      </div>
+    </main>
+  </div>
+  <script type="module" src="./src/scripts/app.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./service-worker.js')
+          .then(reg => console.log('SW registered', reg))
+          .catch(err => console.log('SW failed', err));
+      });
+    }
+  </script>
+</body>
+</html>

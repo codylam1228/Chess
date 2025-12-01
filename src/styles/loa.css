@@ -1,0 +1,68 @@
+/* LOA Styles */
+.loa-game {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.loa-board {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: repeat(8, 1fr);
+  width: 100%;
+  max-width: 400px;
+  aspect-ratio: 1;
+  border: 2px solid var(--border-color);
+  background-color: #d18b47;
+}
+
+.square {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+}
+
+.square.light {
+  background-color: #ffce9e;
+}
+
+.square.dark {
+  background-color: #d18b47;
+}
+
+.square.selected {
+  background-color: rgba(255, 255, 0, 0.5);
+}
+
+.square.valid-move::after {
+  content: '';
+  display: block;
+  width: 10px;
+  height: 10px;
+  background-color: rgba(0, 255, 0, 0.5);
+  border-radius: 50%;
+  position: absolute;
+}
+
+.checker {
+  width: 80%;
+  height: 80%;
+  border-radius: 50%;
+  border: 2px solid rgba(0,0,0,0.2);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  transition: transform 0.1s;
+}
+
+.checker.b {
+  background-color: #333;
+  border-color: #000;
+}
+
+.checker.w {
+  background-color: #eee;
+  border-color: #ccc;
+}
+
