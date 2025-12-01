@@ -1,0 +1,39 @@
+# Project Context
+
+## Purpose
+A minimalist web portal hosted on GitHub Pages for playing board games locally (hotseat multiplayer). The project aims to provide a simple, distraction-free environment for playing abstract strategy games like Chess and Lines of Action.
+
+## Tech Stack
+- **Frontend**: Plain HTML5, CSS3, and Modern JavaScript (ES6+).
+- **Hosting**: GitHub Pages.
+- **Libraries**: Minimal external dependencies. Potential use of a lightweight UI helper if UI complexity grows, but currently targeting Vanilla JS.
+
+## Project Conventions
+
+### Code Style
+- **JavaScript**: Modern ES6+ syntax.
+- **CSS**: CSS Variables for theming (supporting minimalist design).
+- **Formatting**: Standard 2-space indentation.
+
+### Architecture Patterns
+- **Game Loop**: Event-driven for board games (turn-based), requestAnimationFrame for animations if needed.
+- **State Management**: Simple in-memory state for current game session.
+- **Component Structure**:
+  - `index.html`: Main entry point / game selector.
+  - `games/{game-name}/`: Directory for each game's logic and assets.
+  - `shared/`: Shared styles and utilities.
+
+### Git Workflow
+- `main`: Production branch deployed to GitHub Pages.
+- Feature branches for new games or capabilities.
+- OpenSpec workflow for planning significant changes.
+
+## Domain Context
+- **Hotseat Multiplayer**: Two players sharing the same input device (mouse/touch).
+- **Lines of Action (LOA)**: An abstract strategy board game played on an 8x8 checkerboard.
+- **Chess**: Standard international chess rules.
+
+## Important Constraints
+- **No Backend**: The game must run entirely in the browser (client-side only).
+- **Offline Capable**: Should ideally work without active internet after loading.
+- **Device Support**: Responsive design to support desktop and potentially mobile/tablet in landscape.
