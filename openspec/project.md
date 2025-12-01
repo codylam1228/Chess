@@ -32,8 +32,10 @@ A minimalist web portal hosted on GitHub Pages for playing board games locally (
 - **Hotseat Multiplayer**: Two players sharing the same input device (mouse/touch).
 - **Lines of Action (LOA)**: An abstract strategy board game played on an 8x8 checkerboard.
 - **Chess**: Standard international chess rules.
+- **jeung6kei2**: Cantonese version of Chinese Chess.
 
 ## Important Constraints
 - **No Backend**: The game must run entirely in the browser (client-side only).
 - **Offline Capable**: Should ideally work without active internet after loading.
 - **Device Support**: Responsive design to support desktop and potentially mobile/tablet in landscape.
+- **Language**: Always use Cantonese (Traditional Chinese or Romanization) instead of Simplified Chinese.

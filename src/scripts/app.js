@@ -51,9 +51,9 @@ async function loadGame(gameName) {
     } else if (gameName === 'loa') {
         module = await import('../games/loa/ui.js');
         currentGame = new module.LOAUI(gameWrapper);
-    } else if (gameName === 'xiangqi') {
-        module = await import('../games/xiangqi/ui.js');
-        currentGame = new module.XiangqiUI(gameWrapper);
+    } else if (gameName === 'jeung6kei2') {
+        module = await import('../games/jeung6kei2/ui.js');
+        currentGame = new module.Jeung6kei2UI(gameWrapper);
     }
 
   } catch (err) {

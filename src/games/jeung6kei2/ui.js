@@ -1,16 +1,16 @@
-import { XiangqiGame, Piece } from './logic.js';
+import { Jeung6kei2Game, Piece } from './logic.js';
 
-export class XiangqiUI {
+export class Jeung6kei2UI {
   constructor(container) {
     this.container = container;
-    this.game = new XiangqiGame();
+    this.game = new Jeung6kei2Game();
     this.selectedSquare = null;
     this.init();
   }
 
   init() {
     this.container.innerHTML = `
-      <div class="xiangqi-game">
+      <div class="jeung6kei2-game">
         <div class="status-bar">
           <span id="turn-indicator">Turn: Red</span>
           <div class="controls">
@@ -21,12 +21,12 @@ export class XiangqiUI {
             <button id="reset-btn" class="btn">Reset</button>
           </div>
         </div>
-        <div class="xiangqi-board" id="xiangqi-board"></div>
+        <div class="jeung6kei2-board" id="jeung6kei2-board"></div>
         <input type="file" id="file-input" accept=".json" style="display: none;">
       </div>
     `;
 
-    this.boardEl = this.container.querySelector('#xiangqi-board');
+    this.boardEl = this.container.querySelector('#jeung6kei2-board');
     this.turnEl = this.container.querySelector('#turn-indicator');
     this.fileInput = this.container.querySelector('#file-input');
     
@@ -47,7 +47,7 @@ export class XiangqiUI {
     this.fileInput.addEventListener('change', (e) => this.handleLoad(e));
 
     this.container.querySelector('#reset-btn').addEventListener('click', () => {
-      this.game = new XiangqiGame();
+      this.game = new Jeung6kei2Game();
       this.selectedSquare = null;
       this.render();
     });
@@ -110,7 +110,7 @@ export class XiangqiUI {
     for (let row = 0; row < 10; row++) {
       for (let col = 0; col < 9; col++) {
         const cell = document.createElement('div');
-        cell.className = 'xq-cell';
+        cell.className = 'jeung6kei2-cell';
         cell.dataset.row = row;
         cell.dataset.col = col;
 
@@ -119,7 +119,7 @@ export class XiangqiUI {
         const piece = this.game.getPiece(row, col);
         if (piece) {
           const el = document.createElement('div');
-          el.className = `xq-piece ${piece.color === Piece.RED ? 'red' : 'black'}`;
+          el.className = `jeung6kei2-piece ${piece.color === Piece.RED ? 'red' : 'black'}`;
           el.textContent = this.getPieceChar(piece);
           cell.appendChild(el);
         }

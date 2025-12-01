@@ -1,12 +1,12 @@
-/* Xiangqi Styles */
-.xiangqi-game {
+/* jeung6kei2 Styles */
+.jeung6kei2-game {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: var(--spacing-md);
 }
 
-.xiangqi-board {
+.jeung6kei2-board {
   display: grid;
   grid-template-columns: repeat(9, 1fr);
   grid-template-rows: repeat(10, 1fr);
@@ -22,7 +22,7 @@
 /* Grid Lines - A simplified approach using borders on cells is tricky due to River */
 /* Using pseudo-elements or background image is better, but CSS Grid with borders works for minimalist */
 
-.xq-cell {
+.jeung6kei2-cell {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -31,7 +31,7 @@
 }
 
 /* Draw Grid Lines */
-.xq-cell::before {
+.jeung6kei2-cell::before {
   content: '';
   position: absolute;
   top: 50%;
@@ -42,7 +42,7 @@
   z-index: 0;
 }
 
-.xq-cell::after {
+.jeung6kei2-cell::after {
   content: '';
   position: absolute;
   top: 0;
@@ -59,17 +59,17 @@
 
 /* River: Break vertical lines between Row 4 and Row 5 */
 /* Row 4: Line only goes down to center (Top half only) */
-.xq-cell[data-row="4"]:not([data-col="0"]):not([data-col="8"])::after {
+.jeung6kei2-cell[data-row="4"]:not([data-col="0"]):not([data-col="8"])::after {
   height: 50%;
 }
 
 /* Row 5: Line only starts from center (Bottom half only) */
-.xq-cell[data-row="5"]:not([data-col="0"]):not([data-col="8"])::after {
+.jeung6kei2-cell[data-row="5"]:not([data-col="0"]):not([data-col="8"])::after {
   top: 50%;
   height: 50%;
 }
 
-.xq-piece {
+.jeung6kei2-piece {
   width: 80%;
   height: 80%;
   border-radius: 50%;
@@ -84,17 +84,17 @@
   user-select: none;
 }
 
-.xq-piece.red {
+.jeung6kei2-piece.red {
   color: #c0392b;
   border-color: #c0392b;
 }
 
-.xq-piece.black {
+.jeung6kei2-piece.black {
   color: #2c3e50;
   border-color: #2c3e50;
 }
 
-.xq-cell.selected .xq-piece {
+.jeung6kei2-cell.selected .jeung6kei2-piece {
   background-color: #ffffdd;
   transform: scale(1.1);
 }

@@ -1,4 +1,4 @@
-// Xiangqi Logic (Chinese Chess)
+// jeung6kei2 Logic (Chinese Chess)
 
 export const Piece = {
   RED: 'r',
@@ -12,7 +12,7 @@ export const Piece = {
   SOLDIER: 's'
 };
 
-export class XiangqiGame {
+export class Jeung6kei2Game {
   constructor() {
     this.board = this.createBoard(); // 10 rows, 9 cols
     this.turn = Piece.RED;

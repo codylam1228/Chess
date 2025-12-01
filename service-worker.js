@@ -1,18 +1,18 @@
-const CACHE_NAME = 'game-portal-v7';
+const CACHE_NAME = 'game-portal-v8';
 const ASSETS = [
   './',
   './index.html',
   './src/styles/main.css',
   './src/styles/chess.css',
   './src/styles/loa.css',
-  './src/styles/xiangqi.css',
+  './src/styles/jeung6kei2.css',
   './src/scripts/app.js',
   './src/games/chess/logic.js',
   './src/games/chess/ui.js',
   './src/games/loa/logic.js',
   './src/games/loa/ui.js',
-  './src/games/xiangqi/logic.js',
-  './src/games/xiangqi/ui.js',
+  './src/games/jeung6kei2/logic.js',
+  './src/games/jeung6kei2/ui.js',
   './manifest.json'
 ];
 
