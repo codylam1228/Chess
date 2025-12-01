@@ -14,6 +14,7 @@ export class XiangqiUI {
         <div class="status-bar">
           <span id="turn-indicator">Turn: Red</span>
           <div class="controls">
+            <button id="return-btn" class="btn">Menu</button>
             <button id="undo-btn" class="btn">Reverse</button>
             <button id="save-btn" class="btn">Save</button>
             <button id="load-btn" class="btn">Load</button>
@@ -29,6 +30,10 @@ export class XiangqiUI {
     this.turnEl = this.container.querySelector('#turn-indicator');
     this.fileInput = this.container.querySelector('#file-input');
     
+    this.container.querySelector('#return-btn').addEventListener('click', () => {
+      document.dispatchEvent(new CustomEvent('game-return'));
+    });
+
     this.container.querySelector('#undo-btn').addEventListener('click', () => {
       if (this.game.undo()) {
         this.selectedSquare = null;
@@ -57,7 +62,7 @@ export class XiangqiUI {
     const a = document.createElement('a');
     a.href = url;
     const timestamp = new Date().toISOString().replace(/[:.]/g, '-').slice(0, 19);
-    a.download = `Xiangqi_${timestamp}.json`;
+    a.download = `jeung6kei2_${timestamp}.json`;
     a.click();
     URL.revokeObjectURL(url);
   }

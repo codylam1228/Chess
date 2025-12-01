@@ -15,6 +15,7 @@ export class LOAUI {
         <div class="status-bar">
           <span id="turn-indicator">Turn: Black</span>
           <div class="controls">
+             <button id="return-btn" class="btn">Menu</button>
              <button id="undo-btn" class="btn">Reverse</button>
              <button id="save-btn" class="btn">Save</button>
              <button id="load-btn" class="btn">Load</button>
@@ -30,6 +31,10 @@ export class LOAUI {
     this.turnEl = this.container.querySelector('#turn-indicator');
     this.fileInput = this.container.querySelector('#file-input');
     
+    this.container.querySelector('#return-btn').addEventListener('click', () => {
+      document.dispatchEvent(new CustomEvent('game-return'));
+    });
+
     this.container.querySelector('#undo-btn').addEventListener('click', () => {
       if (this.game.undo()) {
         this.selectedSquare = null;

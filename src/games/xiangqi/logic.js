@@ -20,6 +20,7 @@ export class XiangqiGame {
     this.history = [];
   }
 
+  // ... existing methods ...
   createBoard() {
     const board = new Array(10).fill(null).map(() => new Array(9).fill(null));
     

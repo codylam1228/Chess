@@ -2,12 +2,34 @@
 console.log('Game Portal Initialized');
 
 const gameContainer = document.getElementById('game-container');
+const gameSelector = document.querySelector('.game-selector');
 const buttons = document.querySelectorAll('.game-card');
 let currentGame = null;
 
-// Dynamic Import Handler
+// Event Bus for Return
+document.addEventListener('game-return', () => {
+  const gameWrapper = document.getElementById('active-game-wrapper');
+  if (gameWrapper) {
+    gameWrapper.innerHTML = '';
+    gameWrapper.classList.add('hidden');
+  }
+  gameSelector.classList.remove('hidden');
+  currentGame = null;
+});
+
 async function loadGame(gameName) {
-  gameContainer.innerHTML = '<p>Loading...</p>';
+  // Hide selector
+  gameSelector.classList.add('hidden');
+  
+  // Create or reuse a wrapper for the game
+  let gameWrapper = document.getElementById('active-game-wrapper');
+  if (!gameWrapper) {
+    gameWrapper = document.createElement('div');
+    gameWrapper.id = 'active-game-wrapper';
+    gameContainer.appendChild(gameWrapper);
+  }
+  gameWrapper.innerHTML = '<p>Loading...</p>';
+  gameWrapper.classList.remove('hidden');
   
   try {
     // Load styles
@@ -21,30 +43,29 @@ async function loadGame(gameName) {
 
     // Load Module
     let module;
+    // We don't pass onReturn anymore, we rely on CustomEvent
+    
     if (gameName === 'chess') {
         module = await import('../games/chess/ui.js');
-        currentGame = new module.ChessUI(gameContainer);
+        currentGame = new module.ChessUI(gameWrapper);
     } else if (gameName === 'loa') {
         module = await import('../games/loa/ui.js');
-        currentGame = new module.LOAUI(gameContainer);
+        currentGame = new module.LOAUI(gameWrapper);
     } else if (gameName === 'xiangqi') {
         module = await import('../games/xiangqi/ui.js');
-        currentGame = new module.XiangqiUI(gameContainer);
+        currentGame = new module.XiangqiUI(gameWrapper);
     }
 
   } catch (err) {
     console.error(err);
-    gameContainer.innerHTML = `<p>Error loading ${gameName}</p>`;
+    gameWrapper.innerHTML = `<p>Error loading ${gameName}</p><button onclick="location.reload()">Reload</button>`;
   }
 }
 
 buttons.forEach(btn => {
   btn.addEventListener('click', (e) => {
-    // Use currentTarget to get the button, not child element
-    const btn = e.currentTarget;
-    const game = btn.dataset.game;
-    // Hide selector
-    document.querySelector('.game-selector').classList.add('hidden');
+    const target = e.currentTarget;
+    const game = target.dataset.game;
     loadGame(game);
   });
 });

@@ -11,3 +11,11 @@ The system SHALL provide a central landing page to select and launch games.
 - **THEN** a list of available games (Chess, Lines of Action) is displayed
 - **AND** clicking a game title launches that game
 
+### Requirement: Game Navigation
+The system SHALL provide a mechanism to return to the main menu from an active game.
+
+#### Scenario: Return to Menu
+- **WHEN** the "Return" button is clicked during a game
+- **THEN** the current game is closed
+- **AND** the Game Portal selection menu is displayed
+
