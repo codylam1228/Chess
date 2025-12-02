@@ -28,6 +28,10 @@ A minimalist web portal hosted on GitHub Pages for playing board games locally (
 - Feature branches for new games or capabilities.
 - OpenSpec workflow for planning significant changes.
 
+### UX Standards
+- **Move Highlighting**: All games SHALL visually indicate valid moves when a piece is selected to improve accessibility.
+- **Consistent Controls**: All games SHALL provide standard controls (Menu, Undo, Save, Load, Reset).
+
 ## Domain Context
 - **Hotseat Multiplayer**: Two players sharing the same input device (mouse/touch).
 - **Lines of Action (LOA)**: An abstract strategy board game played on an 8x8 checkerboard.
