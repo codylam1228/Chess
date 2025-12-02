@@ -48,3 +48,12 @@ The system SHALL allow players to export the current game state to a file and im
 - **WHEN** the "Load" button is clicked and a valid JSON file is selected
 - **THEN** the game state (board, turn, history) is restored from the file
 - **AND** the UI updates to reflect the restored state
+
+### Requirement: Move Highlighting
+The system SHALL visually indicate valid moves when a piece is selected.
+
+#### Scenario: Highlight valid moves
+- **WHEN** a player selects a piece
+- **THEN** all intersections where that piece can legally move are highlighted
+- **AND** the highlighting is distinct from the selection highlight
+

@@ -19,3 +19,10 @@ The system SHALL provide a mechanism to return to the main menu from an active g
 - **THEN** the current game is closed
 - **AND** the Game Portal selection menu is displayed
 
+### Requirement: Unified UX Standards
+The portal SHALL enforce consistent UX patterns across all games.
+
+#### Scenario: Standard Compliance
+- **WHEN** a new game is integrated
+- **THEN** it MUST implement standard features defined in Project Conventions (e.g. Move Highlighting)
+
