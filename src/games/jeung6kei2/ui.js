@@ -130,6 +130,15 @@ export class Jeung6kei2UI {
           cell.classList.add('selected');
         }
 
+        // Highlight valid moves
+        if (this.selectedSquare && !this.game.winner) {
+          if (this.game.isValidMove(this.selectedSquare.row, this.selectedSquare.col, row, col)) {
+            const marker = document.createElement('div');
+            marker.className = 'valid-marker';
+            cell.appendChild(marker);
+          }
+        }
+
         cell.addEventListener('click', () => this.handleClick(row, col));
         this.boardEl.appendChild(cell);
       }
