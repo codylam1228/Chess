@@ -121,6 +121,12 @@ export class ChessUI {
           square.classList.add('selected');
         }
 
+        if (this.selectedSquare && !this.game.winner) {
+           if (this.game.isValidMove(this.selectedSquare.row, this.selectedSquare.col, row, col)) {
+             square.classList.add('valid-move');
+           }
+        }
+
         square.addEventListener('click', () => this.handleSquareClick(row, col));
         this.boardEl.appendChild(square);
       }

@@ -23,6 +23,7 @@
   font-size: 2rem;
   cursor: pointer;
   user-select: none;
+  position: relative;
 }
 
 .square.light {
@@ -37,6 +38,16 @@
   background-color: rgba(255, 255, 0, 0.5);
 }
 
+.square.valid-move::after {
+  content: '';
+  display: block;
+  width: 15px;
+  height: 15px;
+  background-color: rgba(0, 255, 0, 0.5);
+  border-radius: 50%;
+  position: absolute;
+}
+
 .piece {
   cursor: grab;
 }
@@ -49,4 +60,3 @@
 .piece.b {
   color: #000;
 }
-
