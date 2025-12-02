@@ -37,6 +37,7 @@ A minimalist web portal hosted on GitHub Pages for playing board games locally (
 - **Lines of Action (LOA)**: An abstract strategy board game played on an 8x8 checkerboard.
 - **Chess**: Standard international chess rules.
 - **jeung6kei2**: Cantonese version of Chinese Chess.
+- **Pentago**: Abstract strategy game on a 6x6 grid with rotating quadrants.
 
 ## Important Constraints
 - **No Backend**: The game must run entirely in the browser (client-side only).

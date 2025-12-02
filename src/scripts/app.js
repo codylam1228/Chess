@@ -54,6 +54,9 @@ async function loadGame(gameName) {
     } else if (gameName === 'jeung6kei2') {
         module = await import('../games/jeung6kei2/ui.js');
         currentGame = new module.Jeung6kei2UI(gameWrapper);
+    } else if (gameName === 'pentago') {
+        module = await import('../games/pentago/ui.js');
+        currentGame = new module.PentagoUI(gameWrapper);
     }
 
   } catch (err) {

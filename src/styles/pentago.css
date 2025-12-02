@@ -1,0 +1,154 @@
+/* Pentago Styles */
+.pentago-game {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.pentago-board-container {
+    position: relative;
+    padding: 20px;
+    background: #333;
+    border-radius: 10px;
+}
+
+.pentago-board {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+  gap: 4px;
+  background-color: #555;
+  padding: 4px;
+  border-radius: 4px;
+  position: relative; /* For separator lines */
+}
+
+/* Visual separation lines */
+.pentago-board::before {
+  content: '';
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  left: 50%;
+  width: 6px;
+  background-color: #222;
+  transform: translateX(-50%);
+  z-index: 0;
+  border-radius: 2px;
+}
+
+.pentago-board::after {
+  content: '';
+  position: absolute;
+  left: 4px;
+  right: 4px;
+  top: 50%;
+  height: 6px;
+  background-color: #222;
+  transform: translateY(-50%);
+  z-index: 0;
+  border-radius: 2px;
+}
+
+/* Gap between quadrants (Row 2/3 and Col 2/3) */
+.pentago-cell[data-col="3"] {
+    margin-left: 8px;
+}
+.pentago-cell[data-row="3"] {
+    margin-top: 8px;
+}
+
+.pentago-cell {
+  width: 50px;
+  height: 50px;
+  background-color: #777;
+  border-radius: 50%; /* Holes */
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 2px 2px 5px rgba(0,0,0,0.5);
+  position: relative;
+  z-index: 1; /* Above separator lines */
+}
+
+.pentago-cell.valid-move:hover {
+    background-color: #888;
+}
+
+/* Move highlighting standard */
+.valid-marker {
+    width: 15px;
+    height: 15px;
+    background-color: rgba(0, 255, 0, 0.3);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.marble {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.5), inset -2px -2px 5px rgba(0,0,0,0.2);
+}
+
+.marble.r {
+    background: radial-gradient(circle at 30% 30%, #ff6b6b, #c0392b);
+}
+
+.marble.b {
+    background: radial-gradient(circle at 30% 30%, #555, #000);
+}
+
+/* Rotation Controls */
+.rotation-controls {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Let clicks pass through normally */
+    display: none;
+    z-index: 2; /* Above cells */
+}
+
+.rotation-controls.active {
+    display: block;
+    pointer-events: auto; /* Block clicks on board */
+}
+
+.quadrant-overlay {
+    position: absolute;
+    width: calc(50% - 20px);
+    height: calc(50% - 20px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+/* Positioning quadrants */
+.q0 { top: 10px; left: 10px; }
+.q1 { top: 10px; right: 10px; }
+.q2 { bottom: 10px; left: 10px; }
+.q3 { bottom: 10px; right: 10px; }
+
+.rotate-btn {
+    width: 30px;
+    height: 30px;
+    background: rgba(255, 255, 255, 0.8);
+    border: 2px solid #333;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s;
+}
+
+.rotate-btn:hover {
+    transform: scale(1.1);
+    background: #fff;
+}
