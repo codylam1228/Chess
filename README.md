@@ -53,10 +53,10 @@ Simply open `index.html` in a modern browser. The app works offline after the fi
 The following screenshots demonstrate the flow for deploying and using the app on a mobile device:
 
 **Step 1:**
-<img src="images/iphone_demo1.png" alt="Phone Demo 1 - Step 1" width="400px">
+<img src="images/Readme/iphone_demo1.png" alt="Phone Demo 1 - Step 1" width="400px">
 
 **Step 2:**
-<img src="images/iphone_demo2.png" alt="Phone Demo 2 - Step 2" width="400px">
+<img src="images/Readme/iphone_demo2.png" alt="Phone Demo 2 - Step 2" width="400px">
 
 
 #### 💻 Desktop (PC)
@@ -64,10 +64,10 @@ The following screenshots demonstrate the flow for deploying and using the app o
 The following screenshots demonstrate the flow for deploying and using the app on PC:
 
 **Step 1:**
-<img src="images/pc_demo1.png" alt="PC Demo 1 - Step 1" width="400px">
+<img src="images/Readme/pc_demo1.png" alt="PC Demo 1 - Step 1" width="400px">
 
 **Step 2:**
-<img src="images/pc_demo2.png" alt="PC Demo 2 - Step 2" width="400px">
+<img src="images/Readme/pc_demo2.png" alt="PC Demo 2 - Step 2" width="400px">
 
 
 ## License
