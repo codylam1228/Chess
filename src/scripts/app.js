@@ -57,6 +57,9 @@ async function loadGame(gameName) {
     } else if (gameName === 'pentago') {
         module = await import('../games/pentago/ui.js');
         currentGame = new module.PentagoUI(gameWrapper);
+    } else if (gameName === 'minesweeper') {
+        module = await import('../games/minesweeper/ui.js');
+        currentGame = new module.MinesweeperUI(gameWrapper);
     }
 
   } catch (err) {

@@ -22,6 +22,7 @@ A minimalist web portal hosted on GitHub Pages for playing board games locally (
   - `index.html`: Main entry point / game selector.
   - `games/{game-name}/`: Directory for each game's logic and assets.
   - `shared/`: Shared styles and utilities.
+- **AI Engines**: Per-game, client-side engines using lightweight JS (no backend). Expose deterministic move selection (e.g., depth-limited search with heuristics) with a target of <1s typical and <3s worst-case per AI turn on mid-tier devices.
 
 ### Git Workflow
 - `main`: Production branch deployed to GitHub Pages.
@@ -38,9 +39,12 @@ A minimalist web portal hosted on GitHub Pages for playing board games locally (
 - **Chess**: Standard international chess rules.
 - **jeung6kei2**: Cantonese version of Chinese Chess.
 - **Pentago**: Abstract strategy game on a 6x6 grid with rotating quadrants.
+- **Minesweeper**: Single-player puzzle about revealing safe cells while flagging mines across configurable grid sizes and difficulties.
 
 ## Important Constraints
 - **No Backend**: The game must run entirely in the browser (client-side only).
 - **Offline Capable**: Should ideally work without active internet after loading.
 - **Device Support**: Responsive design to support desktop and potentially mobile/tablet in landscape.
 - **Language**: Always use Cantonese (Traditional Chinese or Romanization) instead of Simplified Chinese.
+- **AI Performance Budget**: AI computations SHALL avoid blocking the UI; aim for <3s per move with graceful fallback (e.g., shallower search) if limits are exceeded.
+- **AI Save/Load**: Saved state MUST remain derivable from board/turn/history only (no hidden AI state required).
