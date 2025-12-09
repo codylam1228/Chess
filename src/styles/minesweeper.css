@@ -98,6 +98,11 @@
   color: var(--ms-flag);
 }
 
+.cell.misflagged {
+  background: #f9d2d2;
+  color: var(--ms-flag);
+}
+
 .cell.mine {
   background: #f9d2d2;
 }

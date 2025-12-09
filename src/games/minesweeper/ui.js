@@ -352,6 +352,9 @@ export class MinesweeperUI {
           }
         } else if (cell.state === CellState.FLAGGED) {
           cellDiv.textContent = '🚩';
+        } else if (cell.state === CellState.MISFLAGGED) {
+          cellDiv.classList.add('misflagged');
+          cellDiv.textContent = '❌';
         }
 
         this.boardEl.appendChild(cellDiv);

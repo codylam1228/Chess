@@ -1,7 +1,8 @@
 export const CellState = {
   HIDDEN: 'hidden',
   REVEALED: 'revealed',
-  FLAGGED: 'flagged'
+  FLAGGED: 'flagged',
+  MISFLAGGED: 'misflagged'
 };
 
 const defaultDifficulties = {
@@ -310,7 +311,11 @@ export class MinesweeperGame {
       for (let c = 0; c < this.width; c++) {
         const cell = this.board[r][c];
         if (cell.isMine) {
-          cell.state = CellState.REVEALED;
+          if (cell.state !== CellState.FLAGGED) {
+            cell.state = CellState.REVEALED;
+          }
+        } else if (cell.state === CellState.FLAGGED) {
+          cell.state = CellState.MISFLAGGED;
         }
       }
     }
