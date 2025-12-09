@@ -9,6 +9,7 @@ const defaultDifficulties = {
   beginner: { width: 9, height: 9, mines: 10 },
   intermediate: { width: 16, height: 16, mines: 40 },
   expert: { width: 30, height: 16, mines: 99 },
+  infinity: { width: 50, height: 50, mines: 500 },
 };
 
 export class MinesweeperGame {

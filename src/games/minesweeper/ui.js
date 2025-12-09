@@ -14,12 +14,24 @@ export class MinesweeperUI {
     this.init();
   }
 
+  getPreset(name) {
+    if (name === 'beginner') return { width: 9, height: 9, mines: 10 };
+    if (name === 'intermediate') return { width: 16, height: 16, mines: 40 };
+    if (name === 'expert') return { width: 30, height: 16, mines: 99 };
+    if (name === 'infinity') return { width: 50, height: 50, mines: 500 };
+    return null;
+  }
+
   settingsToConfig(settings) {
+    const preset = this.getPreset(settings.difficulty);
+    const width = preset ? preset.width : settings.customWidth;
+    const height = preset ? preset.height : settings.customHeight;
+    const mines = preset ? preset.mines : settings.customMines;
     return {
       difficulty: settings.difficulty,
-      customWidth: settings.customWidth,
-      customHeight: settings.customHeight,
-      customMines: settings.customMines,
+      customWidth: width,
+      customHeight: height,
+      customMines: mines,
       firstClickSafety: settings.firstClickSafety,
       autoReveal: settings.autoReveal
     };
@@ -59,7 +71,8 @@ export class MinesweeperUI {
                 <option value="beginner">Beginner</option>
                 <option value="intermediate">Intermediate</option>
                 <option value="expert">Expert</option>
-                <option value="custom">Infinity / Custom</option>
+                <option value="infinity">Infinity</option>
+                <option value="custom">Custom</option>
               </select>
             </label>
             <button id="settings-btn" class="btn secondary">Settings</button>
@@ -191,7 +204,14 @@ export class MinesweeperUI {
     });
 
     this.difficultySelect.addEventListener('change', (e) => {
-      this.settings.difficulty = e.target.value;
+      const difficulty = e.target.value;
+      this.settings.difficulty = difficulty;
+      const preset = this.getPreset(difficulty);
+      if (preset) {
+        this.settings.customWidth = preset.width;
+        this.settings.customHeight = preset.height;
+        this.settings.customMines = preset.mines;
+      }
       this.saveSettings(this.settings);
       this.game = new MinesweeperGame(this.settingsToConfig(this.settings));
       this.restartTimerInterval();
@@ -373,22 +393,26 @@ export class MinesweeperUI {
   }
 
   applySettingsToUI() {
-    this.difficultySelect.value = this.settings.difficulty || 'beginner';
+    const difficulty = this.settings.difficulty || 'beginner';
+    const preset = this.getPreset(difficulty);
+    this.difficultySelect.value = difficulty;
     this.firstClickSafetyEl.checked = this.settings.firstClickSafety !== false;
     this.autoRevealEl.checked = this.settings.autoReveal !== false;
-    this.customWidthEl.value = this.settings.customWidth || 9;
-    this.customHeightEl.value = this.settings.customHeight || 9;
-    this.customMinesEl.value = this.settings.customMines || 10;
+    this.customWidthEl.value = (preset ? preset.width : this.settings.customWidth) || 9;
+    this.customHeightEl.value = (preset ? preset.height : this.settings.customHeight) || 9;
+    this.customMinesEl.value = (preset ? preset.mines : this.settings.customMines) || 10;
   }
 
   updateSettingsFromUI() {
+    const difficulty = this.difficultySelect.value;
+    const preset = this.getPreset(difficulty);
     this.settings = {
-      difficulty: this.difficultySelect.value,
+      difficulty,
       firstClickSafety: this.firstClickSafetyEl.checked,
       autoReveal: this.autoRevealEl.checked,
-      customWidth: Number(this.customWidthEl.value) || 9,
-      customHeight: Number(this.customHeightEl.value) || 9,
-      customMines: Number(this.customMinesEl.value) || 10
+      customWidth: preset ? preset.width : (Number(this.customWidthEl.value) || 9),
+      customHeight: preset ? preset.height : (Number(this.customHeightEl.value) || 9),
+      customMines: preset ? preset.mines : (Number(this.customMinesEl.value) || 10)
     };
     this.saveSettings(this.settings);
   }
