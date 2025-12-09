@@ -1,5 +1,5 @@
 export const CellState = {
-  HIDDEN: 'hidden',
+  HIDDEN: 'unrevealed',
   REVEALED: 'revealed',
   FLAGGED: 'flagged',
   MISFLAGGED: 'misflagged'
